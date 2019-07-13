@@ -85,6 +85,8 @@ const Map = ({ classes }) => {
     dispatch({type: "DELETE_PIN", payload: deletePin})
     setPopup(null)
   }
+  console.log("%c popup", "background: red", popup)
+  const image = popup && popup.image && popup.image.replace(/^http:\/\//i, 'https://');
 
   return (
     <div className={classes.root}>
@@ -148,7 +150,7 @@ const Map = ({ classes }) => {
           >
             <img
               className={classes.popupImage}
-              src={popup.image}
+              src={image}
               alt={popup.title}
             />
             <div className={classes.popupTab}>

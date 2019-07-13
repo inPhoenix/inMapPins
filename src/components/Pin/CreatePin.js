@@ -30,6 +30,7 @@ const CreatePin = ({ classes }) => {
       "https://api.cloudinary.com/v1_1/inphoenix/image/upload",
       data
     );
+    console.log("%c res.data", "background: red", res.data.url)
     return res.data.url;
   };
 
