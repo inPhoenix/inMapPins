@@ -2,8 +2,6 @@ import React, { useContext, useReducer } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-
-
 import App from "./pages/App";
 import Splash from "./pages/Splash";
 import Context from "./context";
@@ -17,7 +15,7 @@ import { ApolloClient } from 'apollo-client'
 import { WebSocketLink } from 'apollo-link-ws'
 import { InMemoryCache} from 'apollo-cache-inmemory'
 
-
+const PATH = process.env.NODE_ENV === 'production' ? '/inMapPins/' : '/'
 const prodUrl = 'wss://ingeopins.herokuapp.com:4000/graphql'
 const localUrl = 'ws://localhost:4000/graphql'
 
@@ -43,8 +41,8 @@ const Root = () => {
       <ApolloProvider client={client}>
         <Context.Provider value={{ state, dispatch }}>
           <Switch>
-            <ProtectedRoute exact path="/" component={App} />
-            <Route path="/login" component={Splash} />
+            <ProtectedRoute exact path={PATH} component={App} />
+            <Route path={`${PATH}login`} component={Splash} />
           </Switch>
         </Context.Provider>
       </ApolloProvider>
